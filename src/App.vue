@@ -82,7 +82,16 @@
       v-bind:days="0"
       v-bind:years="3"
     ></BigDay>
-
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+      <div v-for="(msg, index) in this.data" :key="index" >
+        <BigDay
+          v-bind:message="msg + new String('周年')"
+          v-bind:startdate="new Date(2021, 4, 8)"
+          v-bind:days="0"
+          v-bind:years="msg"
+        ></BigDay>
+      </div>
+    </div>
     </div>
 </template>
 
@@ -93,11 +102,30 @@ import BigDay from './components/Bigday.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      count: 4,
+      data: [],
+      busy: false
+    }
+  },
   components: {
     Calendar,
     // Divider,
     BigDay,
   },
+  methods: {
+    loadMore: function() {
+      this.busy = true;
+
+      setTimeout(() => {
+        for (var i = 0; i < 10; i++) {
+          this.data.push(this.count++);
+        }
+        this.busy = false;
+      });
+    }
+  }
 }
 
 
