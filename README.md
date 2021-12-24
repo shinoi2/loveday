@@ -1,1 +1,1 @@
-# [loveday](!http://levana.fun)
+# [loveday](http://levana.fun)
