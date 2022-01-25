@@ -4,7 +4,7 @@
             <span style="color: #f5317f;">
                 <HeartFilled />
             </span>
-            恋爱已经
+            {{ this.message }}已经
             <span style="color: #f5317f; font-size: 50px">
                 {{ days_from_today() }}
             </span>
@@ -22,6 +22,7 @@ export default {
         HeartFilled
     },
     props: {
+        message: String,
         startdate: Date
     },
     methods: {
